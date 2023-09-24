@@ -137,6 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: SafeArea(
         child: Center(
           child: Container(
+            padding: const EdgeInsets.all(8),
             child: ListTileTheme(
               textColor: Colors.white,
               iconColor: Colors.white,
@@ -144,36 +145,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      CircleAvatar(
-                        radius: 20.0,
-                        backgroundImage: AssetImage('lib/assets/human.png'),
-                      ),
-                      SizedBox(width: 16.0),
-                    ],
+                  const SizedBox(
+                    height: 50,
                   ),
-                  Column(
-                    // Wrap the name and email in a column
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'John Doe',
-                        style: TextStyle(
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                  const ListTile(
+                    leading: CircleAvatar(
+                      radius: 25.0,
+                      backgroundImage: AssetImage('lib/assets/human.png'),
+                    ),
+                    title: Text(
+                      'John Doe',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                      Text(
-                        'johndoe@email.com',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.white,
-                        ),
+                    ),
+                    subtitle: Text(
+                      'johndoe@email.com',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.white,
                       ),
-                    ],
+                    ),
                   ),
                   const SizedBox(
                     height: 30.0,
