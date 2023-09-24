@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/network/authentication.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -136,7 +137,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            Navigator.pushNamed(context, '/home');
+                            Authentication()
+                                .signUp(
+                                    email: _emailController.text,
+                                    password: _passwordController.text)
+                                .then((value) {
+                              Navigator.popAndPushNamed(context, '/home');
+                            });
                           }
                         },
                         style: ElevatedButton.styleFrom(

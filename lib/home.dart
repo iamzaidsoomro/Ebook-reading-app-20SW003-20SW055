@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/popular_author.dart';
 import 'package:flutter_application_1/search_bar.dart';
 import 'package:flutter_application_1/trending_books.dart';
 import 'favourites.dart';
@@ -19,6 +19,7 @@ class HomeView extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(screenSize.width * 0.03),
           child: ListView(
+            physics: const BouncingScrollPhysics(),
             children: <Widget>[
               const Text(
                 'Hi, Farheen',
@@ -200,8 +201,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   ListTile(
                     onTap: () {},
-                    leading: const Icon(Icons.settings),
-                    title: const Text('Settings'),
+                    leading: const Icon(Icons.logout),
+                    title: const Text('Logout'),
                   ),
                   const Spacer(),
                   DefaultTextStyle(
