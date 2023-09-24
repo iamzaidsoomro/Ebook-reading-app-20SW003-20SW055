@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'book.dart';
+
 class BookItem extends StatelessWidget {
   BookItem({Key? key}) : super(key: key);
 
@@ -37,38 +39,52 @@ class BookItem extends StatelessWidget {
         child: Row(
           children: titles.asMap().entries.map((entry) {
             final index = entry.key;
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Card(
-                    elevation: 2,
-                    child: SizedBox(
-                      width: 80,
-                      height: 100,
-                      child: Image.asset(
-                        images[index],
-                        fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                // Navigate to the Book class when a book is tapped
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Book(
+                      bookTitle: titles[index],
+                      bookAuthor: authors[index],
+                      bookImage: images[index],
+                    ),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Card(
+                      elevation: 2,
+                      child: SizedBox(
+                        width: 80,
+                        height: 100,
+                        child: Image.asset(
+                          images[index],
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    entry.value,
-                    style: const TextStyle(
+                    const SizedBox(height: 4),
+                    Text(
+                      entry.value,
+                      style: const TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      authors[index],
+                      style: const TextStyle(
                         fontSize: 15.0,
                         color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    authors[index],
-                    style: const TextStyle(
-                      fontSize: 15.0,
-                      color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }).toList(),

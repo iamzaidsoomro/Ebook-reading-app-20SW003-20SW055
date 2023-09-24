@@ -2,14 +2,7 @@ import 'package:flutter/material.dart';
 
 class Favourite extends StatelessWidget {
   Favourite({Key? key});
-  final List<String> images = [
-    "lib/assets/book3.jpg",
-    "lib/assets/book4.jpg",
-    "lib/assets/book5.jpg",
-    "lib/assets/book6.jpg",
-    "lib/assets/book1.jpg",
-    "lib/assets/book2.jpg",
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -17,10 +10,9 @@ class Favourite extends StatelessWidget {
         child: Column(
           children: [
             ListView.builder(
-              shrinkWrap: true, 
-              physics:
-                  const NeverScrollableScrollPhysics(), 
-              itemCount: 6, 
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 6,
               itemBuilder: (BuildContext context, int index) {
                 return const Card(
                   color: Color.fromARGB(255, 43, 48, 78),
@@ -28,9 +20,9 @@ class Favourite extends StatelessWidget {
                     title: Text(
                       "BookName",
                       style: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.white,
-                      ),
+                          fontSize: 18.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
                       "AuthorName",

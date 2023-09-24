@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/popular_author.dart';
 import 'package:flutter_application_1/search_bar.dart';
 import 'package:flutter_application_1/trending_books.dart';
 import 'favourites.dart';
@@ -73,6 +74,10 @@ class HomeView extends StatelessWidget {
                 height: screenSize.width * 0.015,
               ),
               Favourite(),
+              SizedBox(
+                height: screenSize.width * 0.015,
+              ),
+              //PopularAuthors(),
             ],
           ),
         ),
@@ -81,20 +86,9 @@ class HomeView extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
-    );
-  }
-}
-
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -108,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backdrop: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -120,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+
       controller: _advancedDrawerController,
       animationCurve: Curves.easeInOut,
       animationDuration: const Duration(milliseconds: 300),
@@ -136,7 +131,96 @@ class _HomeScreenState extends State<HomeScreen> {
         //     blurRadius: 0.0,
         //   ),
         // ],
-        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+      ),
+      drawer: SafeArea(
+        child: Center(
+          child: Container(
+            child: ListTileTheme(
+              textColor: Colors.white,
+              iconColor: Colors.white,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      CircleAvatar(
+                        radius: 20.0,
+                        backgroundImage: AssetImage('lib/assets/human.png'),
+                      ),
+                      SizedBox(width: 16.0),
+                    ],
+                  ),
+                  Column(
+                    // Wrap the name and email in a column
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        'John Doe',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'johndoe@email.com',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30.0,
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, "home");
+                    },
+                    leading: const Icon(Icons.home),
+                    title: const Text('Home'),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'profile');
+                    },
+                    leading: const Icon(Icons.account_circle_rounded),
+                    title: const Text('Profile'),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'favourite');
+                    },
+                    leading: const Icon(Icons.favorite),
+                    title: const Text('Favourites'),
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    leading: const Icon(Icons.settings),
+                    title: const Text('Settings'),
+                  ),
+                  const Spacer(),
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.white54,
+                    ),
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 16.0,
+                      ),
+                      child: const Text('Terms of Service | Privacy Policy'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
       child: Scaffold(
         appBar: AppBar(
@@ -157,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
               valueListenable: _advancedDrawerController,
               builder: (_, value, __) {
                 return AnimatedSwitcher(
-                  duration: Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 250),
                   child: Icon(
                     value.visible ? Icons.clear : Icons.menu,
                     key: ValueKey<bool>(value.visible),
@@ -167,56 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        body: HomeView(),
-      ),
-      drawer: SafeArea(
-        child: Center(
-          child: Container(
-            child: ListTileTheme(
-              textColor: Colors.white,
-              iconColor: Colors.white,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.home),
-                    title: const Text('Home'),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.account_circle_rounded),
-                    title: const Text('Profile'),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.favorite),
-                    title: const Text('Favourites'),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: const Icon(Icons.settings),
-                    title: const Text('Settings'),
-                  ),
-                  Spacer(),
-                  DefaultTextStyle(
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.white54,
-                    ),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 16.0,
-                      ),
-                      child: Text('Terms of Service | Privacy Policy'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+        body: const HomeView(),
       ),
     );
   }
