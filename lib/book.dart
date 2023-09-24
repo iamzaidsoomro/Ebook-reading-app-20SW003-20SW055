@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'popular_author.dart'; // Import the PopularAuthor class
 
 class Book extends StatefulWidget {
   final String bookTitle;
@@ -42,7 +41,7 @@ class _BookState extends State<Book> {
       body: DefaultTabController(
         length: 2,
         child: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height -
                 AppBar().preferredSize.height,
             child: Column(
@@ -103,8 +102,8 @@ class _BookState extends State<Book> {
                                 const SizedBox(
                                   height: 20.0,
                                 ),
-                                Row(
-                                  children: const [
+                                const Row(
+                                  children: [
                                     Icon(
                                       Icons.star,
                                       color: Colors.yellow,
@@ -282,26 +281,26 @@ class _BookState extends State<Book> {
 
                       // Author Tab
                       // Author Tab
-                      SingleChildScrollView(
+                      const SingleChildScrollView(
                         // Wrap the Author Tab content in a SingleChildScrollView
                         child: Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: EdgeInsets.all(16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Circular Avatar and Author Details
                               Row(
                                 children: [
-                                  const CircleAvatar(
+                                  CircleAvatar(
                                     radius: 40.0,
                                     backgroundImage: AssetImage(
                                         'lib/assets/human.png'), // Replace with the actual image path
                                   ),
-                                  const SizedBox(width: 16.0),
+                                  SizedBox(width: 16.0),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: const [
+                                    children: [
                                       Text(
                                         "Author Name",
                                         style: TextStyle(
@@ -323,8 +322,8 @@ class _BookState extends State<Book> {
                               ),
 
                               // About Author Heading
-                              const SizedBox(height: 20.0),
-                              const Text(
+                              SizedBox(height: 20.0),
+                              Text(
                                 "About Author",
                                 style: TextStyle(
                                   fontSize: 20.0,
@@ -332,10 +331,10 @@ class _BookState extends State<Book> {
                                   color: Colors.white,
                                 ),
                               ),
-                              const SizedBox(height: 10.0),
+                              SizedBox(height: 10.0),
 
                               // Author Description
-                              const Text(
+                              Text(
                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                                 style: TextStyle(
                                   fontSize: 15.0,

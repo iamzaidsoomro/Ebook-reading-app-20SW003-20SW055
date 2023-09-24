@@ -142,7 +142,53 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     email: _emailController.text,
                                     password: _passwordController.text)
                                 .then((value) {
-                              Navigator.popAndPushNamed(context, '/home');
+                              showDialog(
+                                  context: context,
+                                  builder: ((context) {
+                                    return const Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Dialog(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(20.0))),
+                                        child: SizedBox(
+                                          height: 300,
+                                          width: 300,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                SizedBox(
+                                                  height: 20.0,
+                                                ),
+                                                Image(
+                                                  image: AssetImage(
+                                                      'lib/assets/email_animation.gif'),
+                                                  height: 130,
+                                                  width: 130,
+                                                ),
+                                                SizedBox(height: 10),
+                                                Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'Verification email has been sent, please verify your email to continue',
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 20.0,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }));
                             });
                           }
                         },

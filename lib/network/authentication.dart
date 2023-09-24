@@ -27,7 +27,8 @@ class Authentication {
         password: password,
       );
       final User? user = userCredential.user;
-      return user!.uid;
+      user!.sendEmailVerification();
+      return user.uid;
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
