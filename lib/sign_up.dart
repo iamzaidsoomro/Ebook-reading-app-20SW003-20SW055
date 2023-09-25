@@ -140,7 +140,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Authentication()
                                 .signUp(
                                     email: _emailController.text,
-                                    password: _passwordController.text)
+                                    password: _passwordController.text,
+                                    username: _usernameController.text)
                                 .then((value) {
                               showDialog(
                                   context: context,
