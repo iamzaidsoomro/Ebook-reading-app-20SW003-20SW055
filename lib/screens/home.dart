@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/search_bar.dart';
-import 'package:flutter_application_1/trending_books.dart';
+import 'package:flutter_application_1/screens/search_bar.dart';
+import 'package:flutter_application_1/screens/trending_books.dart';
 import 'favourites.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 

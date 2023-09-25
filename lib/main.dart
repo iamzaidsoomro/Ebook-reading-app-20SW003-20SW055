@@ -1,15 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/book.dart';
+import 'package:flutter_application_1/screens/book.dart';
 import 'package:flutter_application_1/firebase_options.dart';
 
-import 'package:flutter_application_1/home.dart';
-import 'package:flutter_application_1/log_in.dart';
-import 'package:flutter_application_1/profile.dart';
-import 'package:flutter_application_1/sign_up.dart';
-import 'package:flutter_application_1/splash_screen.dart';
+import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/log_in.dart';
+import 'package:flutter_application_1/screens/profile.dart';
+import 'package:flutter_application_1/screens/sign_up.dart';
+import 'package:flutter_application_1/screens/splash_screen.dart';
 
-import 'favourite_screen.dart';
+import 'screens/favourite_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

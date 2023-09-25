@@ -190,6 +190,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ),
                                     );
                                   }));
+                              Navigator.of(context).pushNamed('/login');
                             });
                           }
                         },

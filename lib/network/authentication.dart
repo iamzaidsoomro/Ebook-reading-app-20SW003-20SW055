@@ -34,7 +34,7 @@ class Authentication {
         User? user;
         user = value.user;
         user!.sendEmailVerification();
-        user!.updateDisplayName(username);
+        user.updateDisplayName(username);
         _firebaseFirestore.collection('users').doc(user.email).set({
           'email': email,
           'password': password,
