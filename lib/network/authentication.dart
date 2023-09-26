@@ -5,7 +5,7 @@ class Authentication {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  Future<String?> signIn(
+  Future<User?> signIn(
       {required String email, required String password}) async {
     try {
       final UserCredential userCredential =
@@ -14,9 +14,9 @@ class Authentication {
         password: password,
       );
       final User? user = userCredential.user;
-      return user!.uid;
+      return user;
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      return null;
     }
   }
 

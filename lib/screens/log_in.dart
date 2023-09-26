@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/network/authentication.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -76,8 +77,63 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    
-                    Navigator.pushNamed(context, '/home');
+                    Authentication()
+                        .signIn(
+                            email: _usernameController.text,
+                            password: _passwordController.text)
+                        .then((value) {
+                      if (value!.emailVerified) {
+                        Navigator.pushNamed(context, '/home');
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: ((context) {
+                              return const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Dialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                  child: SizedBox(
+                                    height: 300,
+                                    width: 300,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            height: 20.0,
+                                          ),
+                                          Image(
+                                            image: AssetImage(
+                                                'lib/assets/info.gif'),
+                                            height: 130,
+                                            width: 130,
+                                          ),
+                                          SizedBox(height: 10),
+                                          Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Please verify your email for using this app',
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 20.0,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }));
+                      }
+                    });
                   }
                 },
                 style: ElevatedButton.styleFrom(
