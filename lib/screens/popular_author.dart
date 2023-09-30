@@ -64,4 +64,28 @@ final List<Map<String, dynamic>> popularAuthors = [
     'name': 'Author 2',
     'image': 'lib/assets/human.png',
   },
+  {
+    'name': 'Author 3',
+    'image': 'lib/assets/human.png',
+  },
+  {
+    'name': 'Author 4',
+    'image': 'lib/assets/human.png',
+  },
+  {
+    'name': 'Author 5',
+    'image': 'lib/assets/human.png',
+  },
+  {
+    'name': 'Author 6',
+    'image': 'lib/assets/human.png',
+  },
+  {
+    'name': 'Author 7',
+    'image': 'lib/assets/human.png',
+  },
+  {
+    'name': 'Author 8',
+    'image': 'lib/assets/human.png',
+  },
 ];

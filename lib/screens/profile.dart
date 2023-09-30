@@ -68,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
                 title: 'Saved Books',
                 icon: Icons.bookmark,
                 onTap: () {
-                  // Handle Saved Books tap
+                  Navigator.pushNamed(context, "saved");
                 },
               ),
               buildCardWithTitleAndListTile(

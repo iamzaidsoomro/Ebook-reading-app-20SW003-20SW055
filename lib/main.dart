@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/book.dart';
+import 'package:flutter_application_1/screens/saved_book.dart';
 import 'package:flutter_application_1/utils/firebase_options.dart';
 
 import 'package:flutter_application_1/screens/home.dart';
@@ -43,6 +44,8 @@ class MyApp extends StatelessWidget {
             ),
         "profile": (context) => ProfileScreen(),
         "favourite": (context) => const FavouriteScreen(),
+        "homeview": (context) => const HomeView(),
+        "saved": (context) => const SavedBooksScreen(),
       },
     );
   }

@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 
+// Define a model class for saved books
+class SavedBook {
+  final String bookTitle;
+  final String bookAuthor;
+  final String bookImage;
+
+  SavedBook({
+    required this.bookTitle,
+    required this.bookAuthor,
+    required this.bookImage,
+  });
+}
+
 class Book extends StatefulWidget {
   final String bookTitle;
   final String bookAuthor;
@@ -19,7 +32,23 @@ class Book extends StatefulWidget {
 class _BookState extends State<Book> {
   // Define variables to keep track of whether the book is liked and saved.
   bool isLiked = false;
-  bool isSaved = true;
+  bool isSaved = false; // Initialize as not saved
+
+  // Define a function to handle saving books
+  void saveBook() {
+    setState(() {
+      isSaved = true; // Mark the book as saved
+
+      final savedBook = SavedBook(
+        bookTitle: widget.bookTitle,
+        bookAuthor: widget.bookAuthor,
+        bookImage: widget.bookImage,
+      );
+      List<SavedBook> savedBooks = [];
+      // Add the saved book to the global savedBooks list
+      savedBooks.add(savedBook);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +132,7 @@ class _BookState extends State<Book> {
                                   height: 20.0,
                                 ),
                                 Row(
-                                  children: [
+                                  children: const [
                                     Icon(
                                       Icons.star,
                                       color: Colors.yellow,
@@ -218,6 +247,12 @@ class _BookState extends State<Book> {
                                       setState(() {
                                         isSaved = !isSaved;
                                       });
+
+                                      // Call the saveBook function when the "Save" button is pressed
+                                      if (isSaved) {
+                                        saveBook();
+                                        Navigator.pushNamed(context, 'saved');
+                                      }
                                     },
                                     child: Row(
                                       children: [
@@ -256,7 +291,6 @@ class _BookState extends State<Book> {
                                   child: ElevatedButton(
                                     onPressed: () {
                                       // Add the action you want to perform when the button is pressed.
-                                      // For example, you can navigate to a different screen.
                                       // Navigator.pushNamed(context, '/read_book');
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -284,23 +318,23 @@ class _BookState extends State<Book> {
                       SingleChildScrollView(
                         // Wrap the Author Tab content in a SingleChildScrollView
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Circular Avatar and Author Details
                               Row(
                                 children: [
-                                  CircleAvatar(
+                                  const CircleAvatar(
                                     radius: 40.0,
                                     backgroundImage: AssetImage(
                                         'lib/assets/human.png'), // Replace with the actual image path
                                   ),
-                                  SizedBox(width: 16.0),
+                                  const SizedBox(width: 16.0),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text(
                                         "Author Name",
                                         style: TextStyle(
@@ -322,8 +356,8 @@ class _BookState extends State<Book> {
                               ),
 
                               // About Author Heading
-                              SizedBox(height: 20.0),
-                              Text(
+                              const SizedBox(height: 20.0),
+                              const Text(
                                 "About Author",
                                 style: TextStyle(
                                   fontSize: 20.0,
@@ -331,10 +365,10 @@ class _BookState extends State<Book> {
                                   color: Colors.white,
                                 ),
                               ),
-                              SizedBox(height: 10.0),
+                              const SizedBox(height: 10.0),
 
                               // Author Description
-                              Text(
+                              const Text(
                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                                 style: TextStyle(
                                   fontSize: 15.0,
