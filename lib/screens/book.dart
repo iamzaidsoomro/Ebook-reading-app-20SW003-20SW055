@@ -102,7 +102,7 @@ class _BookState extends State<Book> {
                                 const SizedBox(
                                   height: 20.0,
                                 ),
-                                const Row(
+                                Row(
                                   children: [
                                     Icon(
                                       Icons.star,
@@ -281,7 +281,7 @@ class _BookState extends State<Book> {
 
                       // Author Tab
                       // Author Tab
-                      const SingleChildScrollView(
+                      SingleChildScrollView(
                         // Wrap the Author Tab content in a SingleChildScrollView
                         child: Padding(
                           padding: EdgeInsets.all(16.0),
