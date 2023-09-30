@@ -16,16 +16,17 @@ class Authentication {
       final User? user = userCredential.user;
       return user;
     } on FirebaseAuthException catch (e) {
+      print(e);
       return null;
     }
   }
 
-  Future<String?> signUp(
+  signUp(
       {required String email,
       required String password,
       required String username}) async {
     try {
-      final UserCredential userCredential = await _firebaseAuth
+      await _firebaseAuth
           .createUserWithEmailAndPassword(
         email: email,
         password: password,
