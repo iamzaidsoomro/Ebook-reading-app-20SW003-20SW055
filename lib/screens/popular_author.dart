@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
 class PopularAuthors extends StatelessWidget {
+  const PopularAuthors({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,34 +58,10 @@ class PopularAuthors extends StatelessWidget {
 final List<Map<String, dynamic>> popularAuthors = [
   {
     'name': 'Author 1',
-    'image': 'lib/assets/author1.png',
+    'image': 'lib/assets/human.png',
   },
   {
     'name': 'Author 2',
-    'image': 'lib/assets/author2.png',
-  },
-  {
-    'name': 'Author 3',
-    'image': 'lib/assets/author3.png',
-  },
-  {
-    'name': 'Author 4',
-    'image': 'lib/assets/author4.png',
-  },
-  {
-    'name': 'Author 5',
-    'image': 'lib/assets/author5.png',
-  },
-  {
-    'name': 'Author 6',
-    'image': 'lib/assets/author6.png',
-  },
-  {
-    'name': 'Author 7',
-    'image': 'lib/assets/author7.png',
-  },
-  {
-    'name': 'Author 8',
-    'image': 'lib/assets/author8.png',
+    'image': 'lib/assets/human.png',
   },
 ];

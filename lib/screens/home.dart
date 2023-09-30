@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/popular_author.dart';
 import 'package:flutter_application_1/screens/search_bar.dart';
 import 'package:flutter_application_1/screens/trending_books.dart';
+import '../network/authentication.dart';
 import 'favourites.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
@@ -77,7 +79,7 @@ class HomeView extends StatelessWidget {
               SizedBox(
                 height: screenSize.width * 0.015,
               ),
-              //PopularAuthors(),
+              const PopularAuthors(),
             ],
           ),
         ),
@@ -173,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   ListTile(
                     onTap: () {
-                      Navigator.pushNamed(context, "home");
+                      Navigator.pushNamed(context, "homeview");
                     },
                     leading: const Icon(Icons.home),
                     title: const Text('Home'),
@@ -193,7 +195,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: const Text('Favourites'),
                   ),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      _showLogoutConfirmation(context);
+                    },
                     leading: const Icon(Icons.logout),
                     title: const Text('Logout'),
                   ),
@@ -220,12 +224,18 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           backgroundColor: const Color(0xFF0D0822),
           elevation: 0,
-          actions: const [
-            Padding(
-              padding: EdgeInsets.only(right: 8.0, top: 8.0, left: 20.0),
-              child: CircleAvatar(
-                backgroundImage: AssetImage('lib/assets/human.png'),
-                radius: 20.0,
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(
+                    context, 'profile'); // Navigate to the profile screen
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('lib/assets/human.png'),
+                  radius: 20.0,
+                ),
               ),
             ),
           ],
@@ -254,5 +264,69 @@ class _HomeScreenState extends State<HomeScreen> {
     // NOTICE: Manage Advanced Drawer state through the Controller.
     // _advancedDrawerController.value = AdvancedDrawerValue.visible();
     _advancedDrawerController.showDrawer();
+  }
+
+  Future<void> _showLogoutConfirmation(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          backgroundColor: const Color(0xFF0D0822),
+          title: const Text(
+            'Logout',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const SizedBox(height: 16.0),
+              const Text(
+                'Are you sure you want to logout?',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      _signOut(context);
+                      Navigator.of(context).pop();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    child: const Text('Yes'),
+                  ),
+                  const SizedBox(width: 16.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('No'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _signOut(BuildContext context) {
+    Authentication().signOut();
+    Navigator.of(context).pop();
   }
 }

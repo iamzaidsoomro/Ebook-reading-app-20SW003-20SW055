@@ -12,7 +12,7 @@ class Favourite extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 6,
+              itemCount: 5,
               itemBuilder: (BuildContext context, int index) {
                 return const Card(
                   color: Color.fromARGB(255, 43, 48, 78),
