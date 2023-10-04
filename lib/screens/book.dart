@@ -251,7 +251,6 @@ class _BookState extends State<Book> {
                                       // Call the saveBook function when the "Save" button is pressed
                                       if (isSaved) {
                                         saveBook();
-                                        Navigator.pushNamed(context, 'saved');
                                       }
                                     },
                                     child: Row(

@@ -124,7 +124,7 @@ class ProfileScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Image.asset(
-                  'lib/assets/splash.png',
+                  'lib/assets/spalsh.png',
                   width: 80.0,
                   height: 80.0,
                 ),

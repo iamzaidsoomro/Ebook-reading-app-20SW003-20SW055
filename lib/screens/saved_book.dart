@@ -15,8 +15,24 @@ class _SavedBooksScreenState extends State<SavedBooksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF0D0822),
       appBar: AppBar(
-        title: const Text('Saved Books'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          "Saved Books",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: ListView.builder(
         itemCount: savedBooks.length,
