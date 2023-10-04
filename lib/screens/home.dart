@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/providers/user_provider.dart';
 import 'package:flutter_application_1/screens/popular_author.dart';
 import 'package:flutter_application_1/screens/search_bar.dart';
 import 'package:flutter_application_1/screens/trending_books.dart';
+import 'package:provider/provider.dart';
 import '../network/authentication.dart';
 import 'favourites.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -22,9 +24,9 @@ class HomeView extends StatelessWidget {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: <Widget>[
-              const Text(
-                'Hi, Farheen',
-                style: TextStyle(
+              Text(
+                'Hi, ${Provider.of<UserProvider>(context).user!.name}',
+                style: const TextStyle(
                   color: Color.fromARGB(255, 233, 230, 230),
                   fontSize: 14.0,
                   fontWeight: FontWeight.w100,
@@ -149,22 +151,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 50,
                   ),
-                  const ListTile(
-                    leading: CircleAvatar(
+                  ListTile(
+                    leading: const CircleAvatar(
                       radius: 25.0,
                       backgroundImage: AssetImage('lib/assets/human.png'),
                     ),
                     title: Text(
-                      'John Doe',
-                      style: TextStyle(
+                      Provider.of<UserProvider>(context).user!.name,
+                      style: const TextStyle(
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                     subtitle: Text(
-                      'johndoe@email.com',
-                      style: TextStyle(
+                      Provider.of<UserProvider>(context).user!.email.toString(),
+                      style: const TextStyle(
                         fontSize: 16.0,
                         color: Colors.white,
                       ),

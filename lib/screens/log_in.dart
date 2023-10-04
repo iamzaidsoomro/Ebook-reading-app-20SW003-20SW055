@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/user_model.dart';
 import 'package:flutter_application_1/network/authentication.dart';
+import 'package:flutter_application_1/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -83,12 +86,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             password: _passwordController.text)
                         .then((value) {
                       if (value!.emailVerified) {
+                        UserModel u = UserModel(
+                            email: value.email!,
+                            password: _passwordController.text,
+                            name: value.displayName!,
+                            uid: value.uid);
+                        Provider.of<UserProvider>(context, listen: false)
+                            .setUser(u);
                         Navigator.pushNamed(context, '/home');
                       } else {
                         showDialog(
                             context: context,
                             builder: ((context) {
-                              return Padding(
+                              return const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Dialog(
                                   shape: RoundedRectangleBorder(

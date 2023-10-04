@@ -137,16 +137,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
+                            showDialog(
+                                context: context,
+                                builder: ((context) => const Dialog(
+                                      child: SizedBox(
+                                          height: 250,
+                                          child: Center(
+                                              child: CircularProgressIndicator(
+                                            color: Color(0xFF0D0822),
+                                          ))),
+                                    )));
                             Authentication()
                                 .signUp(
                                     email: _emailController.text,
                                     password: _passwordController.text,
                                     username: _usernameController.text)
                                 .then((value) {
+                              Navigator.pop(context);
                               showDialog(
                                   context: context,
                                   builder: ((context) {
-                                    return Padding(
+                                    return const Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Dialog(
                                         shape: RoundedRectangleBorder(
@@ -190,7 +201,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ),
                                     );
                                   }));
-                              Navigator.of(context).pushNamed('/login');
                             });
                           }
                         },

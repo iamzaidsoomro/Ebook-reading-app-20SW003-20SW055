@@ -1,85 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/network/authentication.dart';
+import 'package:flutter_application_1/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: const Color(0xFF0D0822),
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+    return Scaffold(
+      backgroundColor: const Color(0xFF0D0822),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
           ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Card(
-                margin: const EdgeInsets.all(16.0),
-                elevation: 4.0,
-                color: const Color.fromARGB(255, 43, 48, 78),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      CircleAvatar(
-                        radius: 60.0,
-                        backgroundImage: AssetImage('lib/assets/human.png'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Card(
+              margin: const EdgeInsets.all(16.0),
+              elevation: 4.0,
+              color: const Color.fromARGB(255, 43, 48, 78),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const CircleAvatar(
+                      radius: 60.0,
+                      backgroundImage: AssetImage('lib/assets/human.png'),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Text(
+                      Provider.of<UserProvider>(context).user!.name,
+                      style: const TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 16.0),
-                      Text(
-                        'John Doe',
-                        style: TextStyle(
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                    ),
+                    Text(
+                      Provider.of<UserProvider>(context).user!.email,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.white,
                       ),
-                      Text(
-                        'johndoe@email.com',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              buildCardWithTitleAndListTile(
-                title: 'Your Favorites',
-                icon: Icons.favorite,
-                onTap: () {
-                  Navigator.pushNamed(context, "favourite");
-                },
-              ),
-              buildCardWithTitleAndListTile(
-                title: 'Saved Books',
-                icon: Icons.bookmark,
-                onTap: () {
-                  Navigator.pushNamed(context, "saved");
-                },
-              ),
-              buildCardWithTitleAndListTile(
-                title: 'Logout',
-                icon: Icons.exit_to_app,
-                onTap: () {
-                  _showLogoutConfirmation(context);
-                },
-              ),
-            ],
-          ),
+            ),
+            buildCardWithTitleAndListTile(
+              title: 'Your Favorites',
+              icon: Icons.favorite,
+              onTap: () {
+                Navigator.pushNamed(context, "favourite");
+              },
+            ),
+            buildCardWithTitleAndListTile(
+              title: 'Saved Books',
+              icon: Icons.bookmark,
+              onTap: () {
+                Navigator.pushNamed(context, "saved");
+              },
+            ),
+            buildCardWithTitleAndListTile(
+              title: 'Logout',
+              icon: Icons.exit_to_app,
+              onTap: () {
+                _showLogoutConfirmation(context);
+              },
+            ),
+          ],
         ),
       ),
     );
