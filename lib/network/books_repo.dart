@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter_application_1/models/book_model.dart';
 import 'package:http/http.dart' as http;
 
 class BooksRepo {
@@ -10,9 +7,8 @@ class BooksRepo {
       'X-RapidAPI-Host': 'freebooks-api2.p.rapidapi.com'
     };
     var url = Uri.parse(
-        'https://freebooks-api2.p.rapidapi.com/fetchEbooks/harry%20potter');
+        'https://freebooks-api2.p.rapidapi.com/fetchEbooks/technology');
     var response = await http.get(url, headers: headers);
-    var cleanResponse = json.decode(response.body);
     return response.body;
   }
 }

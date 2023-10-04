@@ -20,7 +20,6 @@ class BookItem extends StatelessWidget {
               }
               return ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 20,
                   itemBuilder: (_, index) {
                     var books = jsonDecode(snapshot.data.toString());
                     return GestureDetector(
@@ -35,6 +34,7 @@ class BookItem extends StatelessWidget {
                                     )));
                       },
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             margin: const EdgeInsets.all(10),
@@ -49,14 +49,18 @@ class BookItem extends StatelessWidget {
                             ),
                           ),
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                books[index]['title'],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                              SizedBox(
+                                width: 150,
+                                child: Text(
+                                  books[index]['title'],
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  softWrap: true,
                                 ),
                               ),
                               const SizedBox(height: 10),
