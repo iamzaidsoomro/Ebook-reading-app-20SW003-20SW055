@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/network/books_repo.dart';
 import 'package:flutter_application_1/providers/user_provider.dart';
 import 'package:flutter_application_1/screens/popular_author.dart';
 import 'package:flutter_application_1/screens/search_bar.dart';
@@ -14,7 +15,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-
+    BooksRepo().getBooks();
     return Scaffold(
       backgroundColor: const Color(0xFF0D0822),
       body: Align(

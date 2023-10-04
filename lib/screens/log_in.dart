@@ -80,6 +80,16 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    showDialog(
+                        context: context,
+                        builder: ((context) => const Dialog(
+                              child: SizedBox(
+                                  height: 250,
+                                  child: Center(
+                                      child: CircularProgressIndicator(
+                                    color: Color(0xFF0D0822),
+                                  ))),
+                            )));
                     Authentication()
                         .signIn(
                             email: _usernameController.text,
