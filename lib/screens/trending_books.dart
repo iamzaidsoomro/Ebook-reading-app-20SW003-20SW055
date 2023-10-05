@@ -11,7 +11,7 @@ class BookItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 280,
+        height: 270,
         child: FutureBuilder(
             future: BooksRepo().getBooks(),
             builder: (_, snapshot) {
