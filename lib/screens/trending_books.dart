@@ -37,9 +37,10 @@ class BookItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: const EdgeInsets.all(10),
-                            height: 200,
-                            width: 200,
+                            margin: const EdgeInsets.only(
+                                top: 10, bottom: 10, right: 20),
+                            height: 150,
+                            width: 150,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
@@ -57,18 +58,24 @@ class BookItem extends StatelessWidget {
                                   books[index]['title'],
                                   style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
+                                  overflow: TextOverflow.ellipsis,
                                   softWrap: true,
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              Text(
-                                books[index]['authors'],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
+                              SizedBox(
+                                width: 100,
+                                child: Text(
+                                  books[index]['authors'],
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: true,
                                 ),
                               ),
                               const SizedBox(height: 30),

@@ -100,7 +100,7 @@ class _BookState extends State<Book> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10.0),
                               child: Image(
-                                image: AssetImage(widget.bookImage),
+                                image: NetworkImage(widget.bookImage),
                                 fit: BoxFit.cover,
                               ),
                             ),
