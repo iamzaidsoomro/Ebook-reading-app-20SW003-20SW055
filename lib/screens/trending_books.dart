@@ -11,7 +11,7 @@ class BookItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 400,
+        height: 280,
         child: FutureBuilder(
             future: BooksRepo().getBooks(),
             builder: (_, snapshot) {
@@ -19,7 +19,9 @@ class BookItem extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               }
               return ListView.builder(
+                  itemCount: 10,
                   scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (_, index) {
                     var books = jsonDecode(snapshot.data.toString());
                     return GestureDetector(
@@ -28,9 +30,10 @@ class BookItem extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => Book(
-                                      bookTitle: books[index]['title'],
-                                      bookAuthor: books[index]['authors'],
-                                      bookImage: books[index]['imgUrl'],
+                                      bookTitle: books['data'][index]['title'],
+                                      bookAuthor: books['data'][index]
+                                          ['authors'][0],
+                                      bookImage: books['data'][index]['thumb'],
                                     )));
                       },
                       child: Column(
@@ -44,7 +47,8 @@ class BookItem extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                image: NetworkImage(books![index]['imgUrl']),
+                                image: NetworkImage(
+                                    books!['data'][index]['thumb']),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -55,7 +59,7 @@ class BookItem extends StatelessWidget {
                               SizedBox(
                                 width: 150,
                                 child: Text(
-                                  books[index]['title'],
+                                  books['data'][index]['title'],
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
@@ -69,7 +73,7 @@ class BookItem extends StatelessWidget {
                               SizedBox(
                                 width: 100,
                                 child: Text(
-                                  books[index]['authors'],
+                                  books['data'][index]['sub_title'],
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,

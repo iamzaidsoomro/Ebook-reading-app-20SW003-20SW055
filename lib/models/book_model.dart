@@ -1,12 +1,10 @@
 class BookModel {
-  String imgUrl, year, language, publisher, title, author, bookId, pages;
+  String thumb, id, summary, author, title, type;
   BookModel(
       {required this.author,
-      required this.bookId,
-      required this.imgUrl,
-      required this.language,
-      required this.pages,
-      required this.publisher,
+      required this.id,
+      required this.summary,
+      required this.thumb,
       required this.title,
-      required this.year});
+      required this.type});
 }
