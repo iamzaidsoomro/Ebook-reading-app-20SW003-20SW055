@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
                 bookTitle: "Book3",
                 bookAuthor: "Author3",
                 bookImage: "lib/assets/book5.jpg",
+                summary: "dasd",
               ),
           "profile": (context) => ProfileScreen(),
           "favourite": (context) => const FavouriteScreen(),

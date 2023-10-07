@@ -1,13 +1,49 @@
-import 'package:http/http.dart' as http;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/models/book_model.dart';
 
 class BooksRepo {
-  Future<String> getBooks() async {
-    var headers = {
-      'X-RapidAPI-Key': '37620eccc1msha8766c22b64e086p1c29fdjsn89264391a5cc',
-      'X-RapidAPI-Host': 'mangaverse-api.p.rapidapi.com'
-    };
-    var url = Uri.parse('https://mangaverse-api.p.rapidapi.com/manga/fetch');
-    var response = await http.get(url, headers: headers);
-    return response.body;
+  Future<List<BookModel>> getBooks() async {
+    List<BookModel> books = [];
+    await FirebaseFirestore.instance
+        .collection("books")
+        .doc('discoverSection')
+        .get()
+        .then((value) {
+      for (var i = 0; i < value.data()!['bookList'].length; i++) {
+        books.add(BookModel(
+          id: value.data()!['bookList'][i]['id'],
+          author: value.data()!['bookList'][i]['author'],
+          title: value.data()!['bookList'][i]['title'],
+          imgUrl: value.data()!['bookList'][i]['imgUrl'],
+          summary: value.data()!['bookList'][i]['summary'],
+          type: value.data()!['bookList'][i]['type'],
+        ));
+      }
+    });
+    return books;
+  }
+
+  addToFavorites(bookId, email) async {
+    await FirebaseFirestore.instance.collection("users").doc(email).update({
+      "favorites": FieldValue.arrayUnion([bookId])
+    });
+  }
+
+  Future<bool> isFavorite(bookName) async {
+    return await FirebaseFirestore.instance
+        .collection("books")
+        .doc("discoverSection")
+        .get()
+        .then((value) => value.data()!['bookList'].contains(bookName));
+  }
+
+  Future<List> fetchFavorites(email) async {
+    return await FirebaseFirestore.instance
+        .collection("users")
+        .doc(email)
+        .get()
+        .then((value) {
+      return value.data()!['favorites'];
+    });
   }
 }

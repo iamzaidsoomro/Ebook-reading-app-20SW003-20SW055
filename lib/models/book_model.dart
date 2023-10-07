@@ -1,10 +1,10 @@
 class BookModel {
-  String thumb, id, summary, author, title, type;
+  String imgUrl, id, summary, author, title, type;
   BookModel(
       {required this.author,
       required this.id,
       required this.summary,
-      required this.thumb,
+      required this.imgUrl,
       required this.title,
       required this.type});
 }

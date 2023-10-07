@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/network/books_repo.dart';
 import 'package:flutter_application_1/providers/user_provider.dart';
-import 'package:flutter_application_1/screens/popular_author.dart';
+import 'package:flutter_application_1/screens/discover.dart';
 import 'package:flutter_application_1/screens/search_bar.dart';
 import 'package:flutter_application_1/screens/trending_books.dart';
 import 'package:provider/provider.dart';
 import '../network/authentication.dart';
-import 'favourites.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
 class HomeView extends StatelessWidget {
@@ -15,76 +13,68 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    BooksRepo().getBooks();
-    return Scaffold(
-      backgroundColor: const Color(0xFF0D0822),
-      body: Align(
-        alignment: Alignment.centerLeft,
-        child: Padding(
-          padding: EdgeInsets.all(screenSize.width * 0.03),
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            children: <Widget>[
-              Text(
-                'Hi, ${Provider.of<UserProvider>(context).user!.name}',
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 233, 230, 230),
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w100,
-                  fontStyle: FontStyle.italic,
-                ),
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15.0, right: 15, top: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Hi, ${Provider.of<UserProvider>(context).user!.name}',
+              style: const TextStyle(
+                color: Color.fromARGB(255, 233, 230, 230),
+                fontSize: 14.0,
+                fontWeight: FontWeight.w100,
+                fontStyle: FontStyle.italic,
               ),
-              const SizedBox(
-                height: 5.0,
+            ),
+            const SizedBox(
+              height: 5.0,
+            ),
+            const Text(
+              'Keep exploring',
+              style: TextStyle(
+                color: Color.fromARGB(255, 233, 230, 230),
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
               ),
-              const Text(
-                'Keep exploring',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 233, 230, 230),
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            const AppSearchBar(),
+            SizedBox(
+              height: screenSize.width * 0.03,
+            ),
+            const Text(
+              'Trending Books',
+              style: TextStyle(
+                color: Color.fromARGB(255, 233, 230, 230),
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(
-                height: 20.0,
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            BookItem(),
+            SizedBox(
+              height: screenSize.width * 0.02,
+            ),
+            const Text(
+              'Discover',
+              style: TextStyle(
+                color: Color.fromARGB(255, 233, 230, 230),
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
               ),
-              const AppSearchBar(),
-              SizedBox(
-                height: screenSize.width * 0.03,
-              ),
-              const Text(
-                'Trending Books',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 233, 230, 230),
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              BookItem(),
-              SizedBox(
-                height: screenSize.width * 0.02,
-              ),
-              const Text(
-                'My Favourites',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 233, 230, 230),
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: screenSize.width * 0.015,
-              ),
-              Favourite(),
-              SizedBox(
-                height: screenSize.width * 0.015,
-              ),
-              const PopularAuthors(),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: screenSize.width * 0.015,
+            ),
+            const Discover(),
+          ],
         ),
       ),
     );
@@ -224,6 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       child: Scaffold(
+        backgroundColor: const Color(0xFF0D0822),
         appBar: AppBar(
           backgroundColor: const Color(0xFF0D0822),
           elevation: 0,

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/network/books_repo.dart';
 
@@ -11,7 +9,7 @@ class BookItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 270,
+        height: 250,
         child: FutureBuilder(
             future: BooksRepo().getBooks(),
             builder: (_, snapshot) {
@@ -19,21 +17,21 @@ class BookItem extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               }
               return ListView.builder(
-                  itemCount: 10,
+                  itemCount: 8,
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (_, index) {
-                    var books = jsonDecode(snapshot.data.toString());
+                    var books = snapshot.data;
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (_) => Book(
-                                      bookTitle: books['data'][index]['title'],
-                                      bookAuthor: books['data'][index]
-                                          ['authors'][0],
-                                      bookImage: books['data'][index]['thumb'],
+                                      bookTitle: books[index].title,
+                                      bookAuthor: books[index].author,
+                                      bookImage: books[index].imgUrl,
+                                      summary: books[index].summary,
                                     )));
                       },
                       child: Column(
@@ -48,7 +46,7 @@ class BookItem extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
                                 image: NetworkImage(
-                                    books!['data'][index]['thumb']),
+                                    books![index].imgUrl.toString()),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -59,7 +57,7 @@ class BookItem extends StatelessWidget {
                               SizedBox(
                                 width: 150,
                                 child: Text(
-                                  books['data'][index]['title'],
+                                  books[index].title.toString(),
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
@@ -73,7 +71,7 @@ class BookItem extends StatelessWidget {
                               SizedBox(
                                 width: 100,
                                 child: Text(
-                                  books['data'][index]['sub_title'],
+                                  books[index].type,
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,

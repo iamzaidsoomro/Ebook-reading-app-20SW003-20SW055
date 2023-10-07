@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/network/books_repo.dart';
+import 'package:flutter_application_1/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({Key? key});
@@ -33,40 +36,41 @@ class FavouriteScreen extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 10,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  color: const Color.fromARGB(255, 43, 48, 78),
-                  child: ListTile(
-                    title: const Text(
-                      "BookName",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: const Text(
-                      "AuthorName",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                    leading: Image.asset(
-                        "lib/assets/book4.jpg"), // Use asset() method
-                    trailing: const Icon(
-                      Icons.favorite_rounded,
-                      color: Color.fromARGB(255, 250, 46, 46),
-                    ),
+          FutureBuilder(
+              future: BooksRepo().fetchFavorites(
+                  Provider.of<UserProvider>(context).user!.email),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasData == false) {
+                  return const Center(child: Text("No Data"));
+                }
+                return Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        color: const Color.fromARGB(255, 43, 48, 78),
+                        child: ListTile(
+                          title: Text(
+                            snapshot.data![index],
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          trailing: const Icon(
+                            Icons.favorite_rounded,
+                            color: Color.fromARGB(255, 250, 46, 46),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 );
-              },
-            ),
-          ),
+              }),
         ],
       ),
     );
