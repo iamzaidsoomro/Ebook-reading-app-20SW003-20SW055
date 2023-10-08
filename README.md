@@ -19,16 +19,21 @@ In response to the pressing problem of limited access to printed books and educa
 Our e-book application encompasses a range of features tailored to address the identified problem effectively:
 ### _Extensive E-Book Catalog_
 •	We curate an extensive catalog of e-books across various genres, from classic literature to educational textbooks.
+
 •	Users have access to a diverse selection of reading materials to suit their interests and learning needs.
 ### _User-Friendly Interface_
 •	The application boasts an intuitive and user-friendly interface, ensuring ease of navigation and reading for users of all ages and backgrounds.
+
 •	Special attention is given to accessibility features to accommodate users with disabilities.
 ### _Educational Resources:_
 •	Beyond e-books, our application offers supplementary educational resources, including interactive quizzes, video tutorials, and study guides, enhancing the learning experience.
 ### _Target Audience and Impact_
 Our target audience includes:
+
 •	Students in underserved schools and educational institutions.
+
 •	Individuals in remote areas with limited access to physical libraries.
+
 •	Adults seeking self-improvement, career advancement, or personal enrichment through reading and learning.
 ## RESPONSIVE USER INTERFACES
 ![Untitled design](https://github.com/iamzaidsoomro/Ebook-reading-app-20SW003-20SW055/assets/85921127/0c0fb000-d99a-42da-9aa6-2263c5caaae0)
