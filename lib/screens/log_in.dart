@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/user_model.dart';
 import 'package:flutter_application_1/network/authentication.dart';
 import 'package:flutter_application_1/providers/user_provider.dart';
+import 'package:flutter_application_1/screens/forgot_password.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: TextFormField(
                   controller: _usernameController,
                   decoration: const InputDecoration(
-                    hintText: 'Username',
+                    hintText: 'Email',
                     border: InputBorder.none,
                   ),
                   validator: (value) {
@@ -165,6 +166,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 child: const Text('Log In'),
+              ),
+              const SizedBox(height: 10.0), // Add some spacing
+              TextButton(
+                onPressed: () {
+                  // Navigate to the sign-up screen
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) =>
+                              const ForgotPasswordScreen())));
+                },
+                child: const Text("Doesn't remember password? Reset password"),
               ),
               const SizedBox(height: 10.0), // Add some spacing
               TextButton(

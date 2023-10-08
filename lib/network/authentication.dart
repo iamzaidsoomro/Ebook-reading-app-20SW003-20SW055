@@ -49,6 +49,10 @@ class Authentication {
     }
   }
 
+  forgotPassword(email) async {
+    return await _firebaseAuth.sendPasswordResetEmail(email: email);
+  }
+
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
