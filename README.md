@@ -4,7 +4,7 @@
 
 
 ### PROJECT TITLE
-# **_E-Book Application: Bridging the Digital Divide_**
+# **E-Book Application: Bridging the Digital Divide**
 
 ## INTRODUCTION
 The e-book application project aims to develop a user-friendly digital platform that addresses the real-world problem of limited access to traditional printed books and educational resources, particularly in underserved communities. This report outlines the problem identification, proposed solution, and key aspects of the project.
