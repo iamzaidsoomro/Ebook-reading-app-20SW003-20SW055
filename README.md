@@ -1,6 +1,6 @@
-![muet_logo](https://github.com/iamzaidsoomro/Ebook-reading-app-20SW003-20SW055/muet_logo)
+![muet_logo](https://github.com/iamzaidsoomro/Ebook-reading-app-20SW003-20SW055/blob/master/muet_logo.png)
 
-![poster](https://github.com/iamzaidsoomro/Ebook-reading-app-20SW003-20SW055/poster.png)
+![poster](https://github.com/iamzaidsoomro/Ebook-reading-app-20SW003-20SW055/blob/master/poster.png)
 
 
 ### PROJECT TITLE
@@ -36,8 +36,8 @@ Our target audience includes:
 
 •	Adults seeking self-improvement, career advancement, or personal enrichment through reading and learning.
 ## RESPONSIVE USER INTERFACES
-![Untitled design](https://github.com/iamzaidsoomro/Ebook-reading-app-20SW003-20SW055/assets/85921127/0c0fb000-d99a-42da-9aa6-2263c5caaae0)
-![Untitled design (1)](https://github.com/iamzaidsoomro/Ebook-reading-app-20SW003-20SW055/assets/85921127/6a1a8015-55c5-438e-926a-363533e3ca11)
+![ss1](https://github.com/iamzaidsoomro/Ebook-reading-app-20SW003-20SW055/blob/master/ss1.png)
+![ss2](https://github.com/iamzaidsoomro/Ebook-reading-app-20SW003-20SW055/blob/master/ss2.png)
 
 
 
