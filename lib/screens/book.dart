@@ -57,8 +57,6 @@ class _BookState extends State<Book> {
 
   @override
   Widget build(BuildContext context) {
-    var isFavorite = BooksRepo().isFavorite(widget.bookTitle);
-
     return Scaffold(
       backgroundColor: const Color(0xFF0D0822),
       appBar: AppBar(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/user_provider.dart';
 import 'package:flutter_application_1/screens/discover.dart';
-import 'package:flutter_application_1/screens/search_bar.dart';
 import 'package:flutter_application_1/screens/trending_books.dart';
 import 'package:provider/provider.dart';
 import '../network/authentication.dart';
@@ -43,7 +42,6 @@ class HomeView extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
-            const AppSearchBar(),
             SizedBox(
               height: screenSize.width * 0.03,
             ),
